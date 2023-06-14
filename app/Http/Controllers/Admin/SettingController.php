@@ -14,8 +14,8 @@ class SettingController extends Controller
     public function index()
     {
         //
-
-        return view('backend.settings.index');
+         $setting=Setting::first();
+        return view('backend.settings.index',compact('setting'));
     }
 
     /**
@@ -44,13 +44,13 @@ class SettingController extends Controller
             //logo code goes like
             if($request->hasFile('logo')){
                 $file=$request->logo;
-                $newName=time().$file->getClientOrignialName();
+                $newName= time().$file->getClientOriginalName();
                 $file->move('images',$newName);
                 $setting->logo='images/'.$newName;
             }
             $setting->save();
-           $this->$request->session()->flash('message','Record saved successfully');
-            return redirect();
+            session()->flash('message','Record saved successfully');
+            return redirect()->back();
     }
 
     /**
@@ -67,6 +67,9 @@ class SettingController extends Controller
     public function edit(string $id)
     {
         //
+        $setting=Setting::find($id);
+       return view('backend.settings.edit',compact('setting'));
+
     }
 
     /**
@@ -75,6 +78,25 @@ class SettingController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        
+        $setting= Setting::find($id);
+        $setting->name=$request->name;
+        $setting->address=$request->address;
+        $setting->contact=$request->contact; 
+        $setting->email=$request->email;
+        $setting->regno=$request->regno;
+
+
+        //logo code goes like
+        if($request->hasFile('logo')){
+            $file=$request->logo;
+            $newName= time().$file->getClientOriginalName();
+            $file->move('images',$newName);
+            $setting->logo='images/'.$newName;
+        }
+        $setting->Update();
+        session()->flash('message','Record Updated successfully');
+        return redirect()->back();
     }
 
     /**

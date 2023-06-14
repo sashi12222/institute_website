@@ -11,13 +11,13 @@
                     </div>
                     <div class="card-body">
 
-                        .@if (session('message'))
+                        @if (session('message'))
                         <div class="py-4">
-                           <p>{{ session('message') }}</p>
+                           <p class="text-primary">{{ session('message') }}</p>
                         </div>
                             
                         @endif
-                         <form action="/settings" method="post" enctype="">
+                         <form action="/settings" method="post" enctype="multipart/form-data">
                                  @csrf
                                  <div class="form-group">
                                     <label for="name">Company Name</label>
@@ -48,7 +48,7 @@
                                     <input id="logo" class="form-control" type="file" name="logo" >
                                 </div>
 
-                                <button type="Submit" class="btn btn-primary">Save Record</button>
+                                <button type="submit" class="btn btn-primary">Save Record</button>
                          </form>
                     </div>
                 </div>
