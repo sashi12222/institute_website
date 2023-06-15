@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,3 +28,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //admin panel
 Route::resource('settings',SettingController::class);
+Route::resource('about',AboutController::class);
