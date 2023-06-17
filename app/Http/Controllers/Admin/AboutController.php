@@ -71,6 +71,8 @@ class AboutController extends Controller
         $about->description=$request->description;
         $about->update();
         return redirect()->back();
+
+        
     }
 
     /**

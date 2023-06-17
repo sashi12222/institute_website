@@ -17,7 +17,7 @@
                         </div>
                             
                         @endif
-                         <form action="/settings/{{ $setting->id }}" method="post" enctype="multipart/form-data">
+                         <form action="/settings/{{ $setting }}" method="post" enctype="multipart/form-data">
                                  @csrf
                                  @method('put')
                                  <div class="form-group">

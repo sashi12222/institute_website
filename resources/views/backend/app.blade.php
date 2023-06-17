@@ -243,7 +243,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
                         {{-- course category --}}
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/category" class="nav-link">
                                 <i class="nav-icon fas fa-clipboard"></i>
                                 <p>
 
@@ -379,6 +379,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="/dist/js/adminlte.min.js"></script>
+
+    {{-- ck editor --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+        .create( document.querySelector( '#description' ) )
+        .then( editor => {
+            editor.editing.view.change( writer => {
+                writer.setStyle( 'height', '500px', editor.editing.view.document.getRoot() );
+            } );
+        } )
+        .catch( error => {
+                console.error( error );
+        } );
+            
+     
+    </script>
+    
 </body>
 
 </html>
