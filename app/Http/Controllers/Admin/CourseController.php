@@ -15,7 +15,8 @@ class CourseController extends Controller
     public function index()
     {
         //
-        return view('backend.course.index');
+        $course=Course::all();
+        return view('backend.course.index',compact('course'));
     }
 
     /**
@@ -60,6 +61,9 @@ class CourseController extends Controller
     public function show(string $id)
     {
         //
+        $course=Course::find($id);
+        return view('backend.course.show',compact('course'));
+
     }
 
     /**
@@ -68,6 +72,9 @@ class CourseController extends Controller
     public function edit(string $id)
     {
         //
+        $course=Course::find($id);
+        $categories=Category::all();
+        return view('backend.course.edit',compact('course','categories'));
     }
 
     /**
@@ -76,6 +83,23 @@ class CourseController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $course= Course::find($id);
+        $course->name=$request->name;
+        $course->duration=$request->duration;
+        $course->fee=$request->fee;
+        $course->syllabus=$request->syllabus;
+        $course->category_id=$request->category_id;
+
+        if($request->hasFile('image')){
+            $file=$request->image;
+            $newName=time().$file->getClientOriginalName();
+            $file->move('course-image',$newName);
+            $course->image='course-image/'.$newName;
+        }
+
+
+        $course->update();
+        return redirect()->back();
     }
 
     /**

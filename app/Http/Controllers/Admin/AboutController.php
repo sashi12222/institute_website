@@ -70,7 +70,7 @@ class AboutController extends Controller
         $about->title=$request->title;
         $about->description=$request->description;
         $about->update();
-        return redirect()->back();
+        return redirect('/course');
 
         
     }
