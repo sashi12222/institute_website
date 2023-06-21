@@ -29,9 +29,9 @@
                                     <td>{{ $upcoming->course->name }}</td>
                                     <td>{{ $upcoming->date }}</td>
                                     <td>{{ $upcoming->time }}</td>
-                                    <td class="{{ $upcoming->status==1 ? 'badge bg-success':'badge bg-danger' }} my-2">{{ $upcoming->status==1 ? 'active':'inactive'}}</td>
+                                    <td><a class="{{ $upcoming->status==1 ? 'badge bg-success':'badge bg-danger' }}">{{ $upcoming->status==1 ? 'active':'inactive'}}</a></td></td>
                                      <td>
-                                        <a href="" class="badge bg-info">Edit</a>
+                                        <a href="/upcoming/{{ $upcoming->id  }}/edit" class="badge bg-info">Edit</a>
                                      </td>
                                      
                                 </tr>

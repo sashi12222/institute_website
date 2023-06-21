@@ -60,6 +60,9 @@ class UpcomingController extends Controller
     public function edit(string $id)
     {
         //
+          $upcoming=Upcoming::find($id);
+          $courses=Course::all();
+          return view("backend.upcoming.edit",compact('upcoming','courses'));
     }
 
     /**
@@ -68,6 +71,14 @@ class UpcomingController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $upcoming= Upcoming::find($id);
+        $upcoming->course_id=$request->course_id;
+        $upcoming->date=$request->date;
+        $upcoming->time=$request->time;
+        $upcoming->class_type=$request->class_type;
+        $upcoming->update();
+        return redirect()->back();
+        
     }
 
     /**
